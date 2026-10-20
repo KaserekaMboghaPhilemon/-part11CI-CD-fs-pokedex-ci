@@ -1,6 +1,6 @@
 # Full Stack Open - Part 11 CI/CD
 
-- **Live Application:** [https://fullstackopen-cicd.onrender.com](https://fullstackopen-cicd.onrender.com)
+- **Live Application:** [https://part11ci-cd-fs-pokedex-ci.onrender.com](https://part11ci-cd-fs-pokedex-ci.onrender.com)
 
 ## Commands
 

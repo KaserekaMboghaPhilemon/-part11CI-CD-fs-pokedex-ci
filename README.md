@@ -10,4 +10,4 @@ Start by running `npm install` inside the project folder:
 - `npm test` to run tests
 - `npm run eslint` to run eslint
 - `npm run build` to make a production build
-- `npm run start-prod` to run your production build
+- `npm run start-prod` to run your production buildTesting Exercise 14 pull request skip

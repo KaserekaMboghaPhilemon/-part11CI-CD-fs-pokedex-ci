@@ -25,3 +25,6 @@ jobs:
         run: npx playwright install --with-deps
       - name: End-to-end tests
         run: npm run test:e2e
+      - name: Trigger deployment
+        if: ${{ github.event_name == 'push' }}
+        run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}

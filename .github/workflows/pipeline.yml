@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  build_and_test:
+  simple_deployment_pipeline:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
         run: npm test
 
   deploy:
-    needs: [build_and_test]
+    needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
     steps:
@@ -59,7 +59,7 @@ jobs:
           args: 'A new version of Pokedex deployed successfully! 🎉'
 
   notify_failure:
-    needs: [build_and_test, deploy]
+    needs: [simple_deployment_pipeline, deploy]
     runs-on: ubuntu-latest
     if: ${{ failure() }}
     steps:

@@ -10,6 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check URL health
-        uses: johntday/url-health-check@v3
-        with:
-          url: https://part11ci-cd-fs-pokedex-ci.onrender.com
+        run: |
+          curl -f https://part11ci-cd-fs-pokedex-ci.onrender.com || exit 1

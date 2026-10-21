@@ -27,6 +27,20 @@ jobs:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
         run: curl ${{ secrets.RENDER_DEPLOY_HOOK }}
+      - name: Send Success Notification
+        uses: Ilshidur/action-discord@master
+        if: success() && github.event_name == 'push'
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: 'A new version of Pokedex deployed successfully! 🎉'
+      - name: Send Failure Notification
+        uses: Ilshidur/action-discord@master
+        if: failure()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: 'Build failed! ❌ Commit ${{ github.event.head_commit.url }} by ${{ github.actor }} broke the build.'
 
   tag_release:
     needs: [simple_deployment_pipeline]

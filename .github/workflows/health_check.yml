@@ -1,0 +1,15 @@
+name: Periodic health check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # Run once a day to avoid consuming free hours
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check URL health
+        uses: johntday/url-health-check@v3
+        with:
+          url: https://part11ci-cd-fs-pokedex-ci.onrender.com
